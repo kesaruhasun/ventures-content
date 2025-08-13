@@ -1,0 +1,18 @@
+name: Dispatch Ventures Sync
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dispatch:
+    name: Sync Ventures Content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch sync to kesaru-me-gui for Ventures
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_DISPATCH_PAT }} # This PAT needs 'repo' scope
+          repository: kesaruhasun/kesaru-me-gui
+          event-type: update_ventures_content
