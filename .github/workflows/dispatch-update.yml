@@ -1,0 +1,17 @@
+name: Dispatch Update to kesaru_me
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch update_ventures_content event
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }} # A PAT with repo scope for kesaru_me
+          repository: kesaruhasun/kesaru_me
+          event-type: update_ventures_content
